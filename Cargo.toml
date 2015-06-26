@@ -3,8 +3,7 @@ name = "clicking_blocks"
 version = "0.1.0"
 authors = ["Jason Schein <jasonschein@gmail.com>"]
 
-[dependencies.piston]
-piston = "0.2.2"
-
 [dependencies]
+piston = "0.2.2"
 rand = "0.3"
+piston_window = "0.6.2"
