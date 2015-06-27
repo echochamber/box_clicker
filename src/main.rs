@@ -44,9 +44,6 @@ impl Game {
 
             self.draw_current_box(&e);
 
-            // Destructuring
-            // e.event returns an Option<Event> enum variant (Option::Some or Option::None)
-            // Event is also an enum ()
             match e.event {
                 Some(Event::Input(Move(MouseCursor(x, y)))) => {
                     self.current_mouse_coordinates.x = x;
@@ -73,15 +70,9 @@ impl Game {
 
     pub fn draw_current_box(&self, window: &PistonWindow) {
         window.draw_2d(|c, g| {
-            // clears the screen, first argument is the background color, of type Color (which is [ColorComponent; 4]). ColorComponent is just an f32.
-            // So the first aregument ends up as an array of 4 f32 numbers. The second argument type is graphics (duh).
             clear([0.8, 0.8, 0.8, 1.0], g);
 
-            // Creates a rectangle. First argument is same type as first argument of clear (Color aka [f32; 4]). 
-            // Second arg is a type where Into<types::Rectangle> is defined (which it is for [f32, 4]).
-            // Third arg type is math::Matrix2d
-            // Fourth is graphics
-            rectangle(self.current_block.color(), // red
+            rectangle(self.current_block.color(),
                       self.current_block.to_rectangle(),
                       c.transform,
                       g

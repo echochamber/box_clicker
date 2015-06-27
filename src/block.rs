@@ -25,18 +25,6 @@ impl Color {
 	pub fn as_array(&self) -> [f32; 4] {
 		[self.r, self.g, self.b, self.a]
 	}
-
-	// pub fn as_rgba(&self) -> [f32; 4] {
-	// 	match *self {
-	// 		Cyan	=> [0.0, 1.0, 1.0, 1.0],
-	// 		Blue	=> [0.0, 0.5, 1.0, 1.0],
-	// 		Orange	=> [1.0, 0.6, 0.0, 1.0],
-	// 		Yellow	=> [1.0, 1.0, 0.0, 1.0],
-	// 		Lime	=> [0.5, 1.0, 0.0, 1.0],
-	// 		Purple	=> [0.8, 0.0, 1.0, 1.0],
-	// 		Red		=> [1.0, 0.0, 0.0, 1.0]
-	// 	}
-	// }
 }
 
 
@@ -87,9 +75,6 @@ impl ActiveBlock {
   		let random_color_b = ((rng.gen::<u32>() % 100) as f32) / 100.0;
   		let random_color_a = ((rng.gen::<u32>() % 50) as f32) / 100.0 + 0.5;
 
-  		
-  		// How do I pick a color randomly from an enum
-
   		let color = Color::new(random_color_r, random_color_g, random_color_b, random_color_a);
 
   		let block = Block::new(color, size as f64, size as f64);
@@ -105,6 +90,10 @@ impl ActiveBlock {
 			self.top_left_corner.y <= point.y &&
 			self.top_left_corner.x + self.block.width >= point.x &&
 			self.top_left_corner.y + self.block.height >= point.y
+	}
+
+	pub fn moveBlock(&mut self, point: Point) {
+		self.top_left_corner = point
 	}
 
 	pub fn color(&self) -> [f32; 4] {
