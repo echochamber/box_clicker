@@ -1,5 +1,3 @@
-# piston_window [![Build Status](https://travis-ci.org/PistonDevelopers/piston_window.svg?branch=master)](https://travis-ci.org/PistonDevelopers/piston_window)
-
 A very simple game.
 
 ![screenshot 2](box_clicker.png?raw=true)
