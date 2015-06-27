@@ -1,9 +1,3 @@
-extern crate rand;
-
-pub const GRID_WIDTH: u64 = 640u64;
-pub const GRID_HEIGHT: u64 = 480u64;
-
-
 #[derive(Debug)]
 pub struct Color {
 	pub r: f32,
@@ -60,27 +54,11 @@ pub struct ActiveBlock {
 
 
 impl ActiveBlock {
-	pub fn new() -> ActiveBlock {
-		use rand::Rng;
-
-		let mut rng = rand::thread_rng();
-
-  		let size = ((rng.gen::<u64>() % 8) + 1) * 20;
-
-  		let x_offet = (rng.gen::<u64>() % ((GRID_WIDTH - size))) as f64;
-  		let y_offet = (rng.gen::<u64>() % ((GRID_HEIGHT - size))) as f64;
-
-  		let random_color_r = ((rng.gen::<u32>() % 100) as f32) / 100.0;
-  		let random_color_g = ((rng.gen::<u32>() % 100) as f32) / 100.0;
-  		let random_color_b = ((rng.gen::<u32>() % 100) as f32) / 100.0;
-  		let random_color_a = ((rng.gen::<u32>() % 50) as f32) / 100.0 + 0.5;
-
-  		let color = Color::new(random_color_r, random_color_g, random_color_b, random_color_a);
-
+	pub fn new(x_offset: f64, y_offset: f64, size: u32, color: Color) -> ActiveBlock {
   		let block = Block::new(color, size as f64, size as f64);
 
 		ActiveBlock {
-			top_left_corner: Point{ x: x_offet, y: y_offet },
+			top_left_corner: Point{ x: x_offset, y: y_offset },
 			block: block 
 		}
 	}
@@ -92,7 +70,7 @@ impl ActiveBlock {
 			self.top_left_corner.y + self.block.height >= point.y
 	}
 
-	pub fn moveBlock(&mut self, point: Point) {
+	pub fn move_block(&mut self, point: Point) {
 		self.top_left_corner = point
 	}
 
